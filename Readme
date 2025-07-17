@@ -1,1 +1,116 @@
+FastAPI + Supabase CRUD App with File Upload and Jinja2 Templates
+This is a simple FastAPI CRUD application integrated with Supabase to store todo items. It supports:
+
+✅ Creating todos with title, description, and completed status
+
+✅ Uploading and streaming images/videos
+
+✅ Viewing todos on a Jinja2-powered HTML page
+
+✅ Serving static files like CSS
+
+✅ JSON API access for frontend/backend consumption
+
+📁 Project Structure
+php
+Copy
+Edit
+project/
+├── main.py               # FastAPI app with routes and Supabase logic
+├── index.html            # Jinja2 HTML template for rendering todos
+├── uploads/              # Stores uploaded media (auto-created)
+├── static/               # Optional static files like styles.css
+└── README.md             # This file
+🚀 Features
+🔁 CRUD operations on todos using Supabase
+
+📦 Upload image/video per todo
+
+🖼️ Jinja2 template rendering (HTML)
+
+🎥 Streaming support for videos and images
+
+🧾 RESTful JSON API
+
+🔧 Setup Instructions
+1. Clone the Project
+bash
+Copy
+Edit
+git clone https://github.com/your-username/fastapi-supabase-crud.git
+cd fastapi-supabase-crud
+2. Create Virtual Environment
+bash
+Copy
+Edit
+python -m venv venv
+source venv/bin/activate  # or venv\Scripts\activate on Windows
+3. Install Dependencies
+bash
+Copy
+Edit
+pip install fastapi uvicorn python-multipart supabase jinja2 aiofiles
+4. Set Supabase Credentials
+Update your main.py:
+
+python
+Copy
+Edit
+SUPABASE_URL = "https://your-project.supabase.co"
+SUPABASE_KEY = "your-anon-or-service-role-key"
+You can get these from your Supabase Dashboard.
+
+🏃 Run the App
+bash
+Copy
+Edit
+uvicorn main:app --reload
+Then open your browser:
+📍 http://127.0.0.1:8000/
+
+📦 Supabase Table Schema
+Create a todos table in Supabase with these columns:
+
+Column	Type	Description
+id	UUID	Primary key
+title	text	Todo title
+description	text	Todo description
+completed	boolean	Task completed or not
+file_path	text	Uploaded file path
+
+💡 API Endpoints
+Method	Endpoint	Description
+GET	/	Render todos in HTML
+POST	/todos	Create todo with media
+GET	/todos	List all todos (JSON)
+GET	/uploads/*	Serve media files
+GET	/stream/{f}	Stream a media file
+
+🧪 Example Todo Upload
+Form fields:
+
+title: e.g. "Buy Milk"
+
+description: "From local store"
+
+completed: true/false
+
+file: Upload a .jpg, .png, or .mp4
+
+📷 UI Preview
+HTML rendered using Jinja2, media embedded in cards.
+
+📌 Notes
+Files are stored locally in /uploads
+
+Optionally, you can use Supabase Storage buckets to store media
+
+This is a dev-level template. For production:
+
+Add auth
+
+Validate file types/sizes
+
+Use CDN or Supabase storage
+
 
