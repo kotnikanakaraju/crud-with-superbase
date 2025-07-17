@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FastAPI + Supabase CRUD</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <h1>Create Todo with Media</h1>
+
+  <form action="/todos" method="post" enctype="multipart/form-data">
+    <input type="text" name="title" placeholder="Title" required><br>
+    <textarea name="description" placeholder="Description" required></textarea><br>
+    <input type="checkbox" name="completed"> Completed<br>
+    <input type="file" name="file" accept="image/*,video/*" required><br>
+    <button type="submit">Create</button>
+  </form>
+
+  <h2>Todos</h2>
+  {% for todo in todos %}
+    <div style="border:1px solid #ccc; padding:10px; margin:10px;">
+      <h3>{{ todo.title }}</h3>
+      <p>{{ todo.description }}</p>
+      <p>Completed: {{ todo.completed }}</p>
+      {% if "video" in todo.file_path %}
+        <video width="300" controls>
+          <source src="{{ todo.file_path }}" type="video/mp4">
+          Your browser does not support video.
+        </video>
+      {% else %}
+        <img src="{{ todo.file_path }}" width="200" />
+      {% endif %}
+    </div>
+  {% endfor %}
+</body>
+</html>
